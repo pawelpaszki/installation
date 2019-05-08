@@ -47,4 +47,4 @@
   register: output
   failed_when: output.stderr != '' and 'not found' not in output.stderr
   with_items: 
-    - "{{ crds }}""
+    - "{{ crds }}"
