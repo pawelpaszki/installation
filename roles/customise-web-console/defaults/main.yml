@@ -1,4 +1,5 @@
 customise_web_console:
+  sso_url_suffix: /auth/admin/openshift/console
   configmap_name: web-console-config
   namespace: console-config
   javascript_filename: web-console-config.js
