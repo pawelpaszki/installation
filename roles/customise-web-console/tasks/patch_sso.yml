@@ -12,24 +12,24 @@
     msg: "{{rhsso_url}}"
 
 - debug: 
-    msg: "{{sso_url_suffix}}"
+    msg: "{{eval_sso_url_suffix}}"
 
 - name: "save original web console config into variable and to backup file"
   shell: oc get cm web-console-config -n console-config -o yaml | tee /tmp/cm_web-console-config-map.yml
   register: web_console_output
   failed_when: web_console_output.stderr != ""
-  when: sso_url_suffix not in rhsso_url
+  when: eval_sso_url_suffix not in rhsso_url
 
 - name: "append the sso suffix to sso url"
-  when: sso_url_suffix not in rhsso_url
+  when: eval_sso_url_suffix not in rhsso_url
   replace:
     path: /tmp/cm_web-console-config-map.yml
     regexp: "{{rhsso_url}}"
-    replace: "{{rhsso_url}}{{sso_url_suffix}}"
+    replace: "{{rhsso_url}}{{eval_sso_url_suffix}}"
 
 - name: "replace changed web console config map"
   shell: oc replace -f /tmp/cm_web-console-config-map.yml
-  when: sso_url_suffix not in rhsso_url
+  when: eval_sso_url_suffix not in rhsso_url
   register: output
   failed_when: output.rc != 0
 
