@@ -20,10 +20,10 @@
   register: default_admin_user_xml
   ignore_errors: True
 
-- name: Update default admin user account details
+- name: Delete admin user
   uri:
     url: "https://{{ threescale_admin_route }}/admin/api/users/{{ default_admin_user_xml.matches.0.id|int }}.xml"
-    method: PUT
+    method: DELETE
     body: "access_token={{ threescale_admin_token }}&username={{ threescale_cluster_admin_new_username }}&email={{ threescale_cluster_admin_email }}"
     validate_certs: "{{ threescale_sso_validate_certs }}"
     status_code: [200]
