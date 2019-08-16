@@ -138,8 +138,10 @@
     -
       name: Uninstall user-rhsso
       include_role:
-        name: rhsso-user
-        tasks_from: uninstall
+        name: rhsso
+        tasks_from: uninstall_sso
+      vars:
+        sso_namespace: "{{ rhsso_user_namespace }}"
       tags: ['rhsso-user']
 
     -
