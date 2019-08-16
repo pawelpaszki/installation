@@ -141,7 +141,7 @@
         name: rhsso
         tasks_from: uninstall_sso
       vars:
-        sso_namespace: "{{ rhsso_user_namespace }}"
+        sso_namespace: "{{ eval_user_rhsso_namespace | default('user-sso') }}"
       tags: ['rhsso-user']
 
     -
