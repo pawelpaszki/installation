@@ -9,7 +9,7 @@ endif::[]
 :toc:
 :toc-placement!:
 
-= Installing Integreatly
+= Installing Integreatly on 3.x
 
 :toc:
 toc::[]
